@@ -37,8 +37,6 @@ section {
 
 .visible {
   color: black;
-  /* transition: color 1000ms linear; */
-  /* background-color: blue; */
 }
 
 .label {

@@ -31,20 +31,33 @@ class CountdownTimer {
             this.secs.textContent = secsValue;
             // console.log(secsValue); 
 
-            document.querySelector('.title').textContent = "You have time"
-            setTimeout(this.onVisibleField, 1000);
-
         } else {
             clearInterval(this.timerId);
-            document.querySelector('.title').textContent = "You are late"
-            setTimeout(this.offVisibleField, 1000);
+            this.onHideValue()
+            
         }
     }
     
-    onStartTimer() {       
-        this.timerId = setInterval(this.timer, 1000);        
+    onStartTimer() {
+        if (this.targetDate > Date.now()) {
+            this.timerId = setInterval(this.timer, 1000);
+            this.onShowValue()         
+
+        } else {            
+            document.querySelector('.title').textContent = "You are late";                     
+        }    
     }
     
+    onShowValue() {
+        document.querySelector('.title').textContent = "You have time"
+        setTimeout(this.onVisibleField, 1000);        
+    }
+
+    onHideValue() {
+        document.querySelector('.title').textContent = "You are late"
+            setTimeout(this.offVisibleField, 1000);
+    }
+
       onVisibleField() {        
         this.values.forEach((value) => {
             value.classList.add("visible")           
